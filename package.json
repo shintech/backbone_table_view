@@ -1,6 +1,6 @@
 {
   "name": "backbone_table_view",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Table View",
   "main": "index.js",
   "repository": "https://github.com/shintech/backbone_table_view.git",

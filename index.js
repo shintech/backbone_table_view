@@ -26,6 +26,7 @@ const TableView = Backbone.Marionette.View.extend({
     this.pageData = options.pageData
     this.panelHeading = options.panelHeading
     this.template = options.template
+    this.modalViewTemplate = options.modalViewTemplate
     this.tableItemTemplate = options.tableItemTemplate
   },
 
