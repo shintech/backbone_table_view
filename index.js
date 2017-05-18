@@ -44,7 +44,7 @@ const TableView = Backbone.Marionette.View.extend({
   handleClick: function (e) {
     const id = $(e.currentTarget).data('id')
     const model = this.collection.get(id)
-    const modelModalView = new ModelModalView({ model: model, template: require('../templates/model-modal-view-template.html')  }) // eslint-disable-line
+    const modelModalView = new ModelModalView({ model: model, template: this.modalViewTemplate  }) // eslint-disable-line
   },
 
   mouseoverHeader: function (event) {
