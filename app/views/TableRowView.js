@@ -2,7 +2,6 @@ const ModelView = Backbone.Marionette.View.extend({
   tagName: 'tr',
   className: 'table-row',
   initialize: function (options) {
-    console.log(options)
     this.template = options.template
   },
   attributes: function () {

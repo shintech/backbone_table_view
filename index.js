@@ -37,7 +37,6 @@ const TableView = Backbone.Marionette.View.extend({
   },
 
   onRender: function () {
-    console.log(this.template)
     this.showChildView('body', new ModelsView({ collection: this.collection, template: this.tableItemTemplate }))
     this.showChildView('footer', new Pagurbate({ pageData: this.pageData }))
   },
