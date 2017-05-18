@@ -1,0 +1,31 @@
+{
+  "name": "backbone_table_view",
+  "version": "0.0.1",
+  "description": "Table View",
+  "main": "index.js",
+  "repository": "https://github.com/shintech/backbone_table_view.git",
+  "author": "Michael Prather",
+  "license": "MIT",
+  "scripts": {
+    "prepublish": "standard"
+  },
+  "standard": {
+    "globals": [
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach",
+      "before",
+      "after",
+      "Backbone",
+      "_",
+      "$"
+    ]
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "standard": "^10.0.2"
+  }    
+}
