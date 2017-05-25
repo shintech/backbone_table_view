@@ -2,18 +2,24 @@ import ModelsView from './app/views/ModelsView'
 import ModelModalView from 'backbone_modal_view'
 import Pagurbate from 'pagurbate'
 
+const modelModalView = new ModelModalView()
+
 const TableView = Backbone.Marionette.View.extend({
   tagName: 'div',
+
   className: 'panel panel-primary',
+
   regions: {
     body: {
       el: 'tbody',
       replaceElement: true
     },
+
     footer: {
       el: '.panel-footer'
     }
   },
+
   events: {
     'mouseover .table-header': 'mouseoverHeader',
     'mouseout .table-header': 'mouseoutHeader',
@@ -26,8 +32,9 @@ const TableView = Backbone.Marionette.View.extend({
     this.pageData = options.pageData
     this.panelHeading = options.panelHeading
     this.template = options.template
-    this.modalViewTemplate = options.modalViewTemplate
     this.tableItemTemplate = options.tableItemTemplate
+
+    modelModalView.template = options.modalViewTemplate
   },
 
   serializeData: function () {
@@ -44,7 +51,9 @@ const TableView = Backbone.Marionette.View.extend({
   handleClick: function (e) {
     const id = $(e.currentTarget).data('id')
     const model = this.collection.get(id)
-    const modelModalView = new ModelModalView({ model: model, template: this.modalViewTemplate  }) // eslint-disable-line
+
+    modelModalView.model = model
+    modelModalView.render()
   },
 
   mouseoverHeader: function (event) {
