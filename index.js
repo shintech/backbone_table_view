@@ -28,6 +28,15 @@ const TableView = Backbone.Marionette.View.extend({
     'click .table-row': 'handleClick'
   },
 
+  initialize: function (options) {
+    this.pageData = options.pageData
+    this.panelHeading = options.panelHeading
+    this.template = options.template
+    this.tableItemTemplate = options.tableItemTemplate
+
+    modelModalView.template = options.modalViewTemplate
+  },
+
   serializeData: function () {
     return {
       'panelHeading': this.panelHeading
@@ -43,7 +52,6 @@ const TableView = Backbone.Marionette.View.extend({
     const id = $(e.currentTarget).data('id')
     const model = this.collection.get(id)
 
-    modelModalView.template = this.modalViewTemplate
     modelModalView.model = model
     modelModalView.render()
   },
