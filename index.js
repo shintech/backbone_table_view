@@ -1,8 +1,10 @@
 import ModelsView from './app/views/ModelsView'
 import ModelModalView from 'backbone_modal_view'
+import UpdateFormView from './app/views/UpdateFormView'
 import Pagurbate from 'pagurbate'
 
 const modelModalView = new ModelModalView()
+const updateFormView = new UpdateFormView()
 
 const TableView = Backbone.Marionette.View.extend({
   tagName: 'div',
@@ -25,6 +27,7 @@ const TableView = Backbone.Marionette.View.extend({
     'mouseout .table-header': 'mouseoutHeader',
     'mouseover .table-row': 'mouseoverRow',
     'mouseout .table-row': 'mouseoutRow',
+    'contextmenu .table-row': 'rightClickRow',
     'click .table-row': 'handleClick'
   },
 
@@ -35,6 +38,7 @@ const TableView = Backbone.Marionette.View.extend({
     this.tableItemTemplate = options.tableItemTemplate
 
     modelModalView.template = options.modalViewTemplate
+    updateFormView.template = options.updateFormTemplate
   },
 
   serializeData: function () {
@@ -53,6 +57,12 @@ const TableView = Backbone.Marionette.View.extend({
     const model = this.collection.get(id)
 
     modelModalView.model = model
+
+    modelModalView.$el.on('contextmenu', function (e) {
+      e.preventDefault()
+      modelModalView.$el.click()
+    })
+
     modelModalView.render()
   },
 
@@ -70,7 +80,25 @@ const TableView = Backbone.Marionette.View.extend({
 
   mouseoutRow: function (event) {
     $(event.currentTarget).css('background-color', '')
+  },
+
+  rightClickRow: function (e) {
+    e.preventDefault()
+    const id = $(e.currentTarget).data('id')
+    const model = this.collection.get(id)
+
+    updateFormView.model = model
+    updateFormView.collection = this.collection
+
+    updateFormView.$el.on('contextmenu', function (e) {
+      e.preventDefault()
+      updateFormView.$el.click()
+    })
+
+    updateFormView.render()
+    return false
   }
+
 })
 
 export default TableView
